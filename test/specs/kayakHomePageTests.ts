@@ -14,11 +14,9 @@ describe("Testing Kayak Home Page", () => {
             await KayakHomePage.openFlightsNav();
         })
 
-
         it("Should display the origin field", async () => {
 
             expect(await KayakHomePage.originFieldsElement).to.have.lengthOf(1)
-
 
         })
 
@@ -51,6 +49,7 @@ describe("Testing Kayak Home Page", () => {
     describe("Feature 2: Display Required Fields when One-Way trip type is selected", () => {
 
         before("Select One-way trip type", async () => {
+
             await KayakHomePage.selectTripType(KayakHomePage.TRIP_TYPE_IDS[KayakHomePage.ONEWAY_TRIP])
 
         })
@@ -64,6 +63,7 @@ describe("Testing Kayak Home Page", () => {
         it("Should display the destination field", async () => {
 
             expect(await KayakHomePage.destinationFieldsElement).to.have.lengthOf(1)
+
         })
 
         it("Should display the departure date field", async () => {
@@ -109,7 +109,9 @@ describe("Testing Kayak Home Page", () => {
     describe("Feature 4: Functionality related to Travel Fields", () => {
 
         before("", async () => {
+
             await KayakHomePage.travelersContainerElement.click();
+
         })
 
         it("Should display appropriate error message when adults count is increased to 10", async () => {
@@ -136,10 +138,10 @@ describe("Testing Kayak Home Page", () => {
 
     })
 
-
     describe("Feature 5: Functipnality related to input fields", () => {
 
         before("Select Round trip type", async () => {
+
             await KayakHomePage.selectTripType(KayakHomePage.TRIP_TYPE_IDS[KayakHomePage.ROUND_TRIP])
 
         })
@@ -147,7 +149,6 @@ describe("Testing Kayak Home Page", () => {
         it("Should display 'Paris, France (PAR)' when PAR is entered and first suggestion is selected in origin field", async () => {
 
             await KayakHomePage.selectNewOrigin("PAR")
-
             expect(await KayakHomePage.originFieldItemsElement[0].getText()).to.equals("Paris, France (PAR)")
 
         })
@@ -155,18 +156,15 @@ describe("Testing Kayak Home Page", () => {
         it("Should display 'New York, United States (NYC)' when NYC is entered and first suggestion is selected in destination field", async () => {
 
             await KayakHomePage.selectNewDestination("NYC")
-
             expect(await KayakHomePage.destinationFieldItemsElement[0].getText()).to.equals("New York, United States (NYC)")
 
         })
-
 
         it("Should display correct departure date when 'current date + 3' is selected", async () => {
 
             await KayakHomePage.selectDate(3, await KayakHomePage.departureDateFieldElement)
             KayakHomePage.flight.departureDateText = KayakHomePage.getCurrentFormattedDate(3)
             expect(await KayakHomePage.departureDateTextElement.getText()).to.equals(KayakHomePage.flight.departureDateText)
-
 
         })
 
@@ -179,28 +177,21 @@ describe("Testing Kayak Home Page", () => {
 
         })
 
-        // it("Should deselect all compare checkboxes", async () => {
-
-        //     KayakHomePage.deselectCompareOptions()
-        //     const check = await KayakHomePage.compareCheckboxElement.getHTML();
-        //     console.log("Checking::::", check)
-        //     expect(await KayakHomePage.compareCheckboxElement.getAttribute("value")).to.equals("false")
-
-
-        // })
-
     })
 
     describe("Feature 6: Functionality related to Flight Search", ()=> {
 
         before("Cick on flight search button", async () => {
+
             KayakHomePage.deselectCompareOptions()
             await KayakHomePage.searchFlights();
+
         })
 
         it("Should open searches for flights", async () => {
 
             expect(await KayakHomePage.isFieldDisplayed(await KayakHomePage.flightRatesContainer)).to.be.true;
+
         })
 
         it("Should show cheapest rate in Cheapest sort option", async () => {
@@ -211,7 +202,6 @@ describe("Testing Kayak Home Page", () => {
 
             expect(cheapestRates).to.be.lessThanOrEqual(bestRates);
             expect(cheapestRates).to.be.lessThanOrEqual(quickestRates);
-
 
         })
 
@@ -238,9 +228,4 @@ describe("Testing Kayak Home Page", () => {
 
     })
 
-
-
-
-
 })
-

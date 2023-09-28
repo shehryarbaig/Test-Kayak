@@ -173,7 +173,6 @@ class KayakHomePage {
                 break;
             }
         }
-        await browser.pause(5000)
 
     }
 

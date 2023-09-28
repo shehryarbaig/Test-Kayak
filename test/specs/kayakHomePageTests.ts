@@ -83,6 +83,7 @@ describe("Testing Kayak Home Page", () => {
     describe("Feature 3: Display Required Fields when Multi-city trip type is selected", () => {
 
         before("Select Multi-city trip type", async () => {
+            
             await KayakHomePage.selectTripType(KayakHomePage.TRIP_TYPE_IDS[KayakHomePage.MULTICITY_TRIP])
 
         })

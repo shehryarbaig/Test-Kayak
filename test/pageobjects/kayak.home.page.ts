@@ -18,7 +18,6 @@ class KayakHomePage {
     readonly TRIP_TYPE_IDS: { [key: string]: string }
     flight: Flight
 
-
     get adultsCountErrorElementElement() { return $('.cAWq-message') }
     get compareCheckboxElement() { return $('.RtT0-items input[type="checkbox"]')}
     get departureDateFieldElement() { return $('span[aria-label ="Start date calendar input"]') }
@@ -47,7 +46,6 @@ class KayakHomePage {
 
     set parentWindow(window: Promise<string>) { this._parentWindow = window }
 
-
     constructor() {
 
         this.ADULTS = "Adults"
@@ -69,12 +67,12 @@ class KayakHomePage {
             departureDateText: "",
             returnDateText: ""
         }
-
     }
 
     async openFlightsNav() {
 
         await this.flightNavItemElement.click();
+
     }
 
     async open() {
@@ -82,6 +80,7 @@ class KayakHomePage {
         await browser.url('https://www.kayak.com/');
         this.parentWindow = browser.getWindowHandle()
         await browser.maximizeWindow();
+
     }
 
     async selectTripType(id: string) {
@@ -90,11 +89,13 @@ class KayakHomePage {
         await this.tripTypeContainerElement.click();
         await tripItem.waitForDisplayed({ timeout: 10000 });
         await tripItem.click();
+
     }
 
     async isFieldDisplayed(field: WebdriverIO.Element) {
 
         return await field.isDisplayed();
+
     }
 
     async changeTravelerCount(count: number, traveler: string) {
@@ -111,6 +112,7 @@ class KayakHomePage {
         else {
             await countInputElement.setValue(count);
         }
+
     }
 
     async selectNewOrigin(originText: string) {
@@ -121,6 +123,7 @@ class KayakHomePage {
         await this.originFieldsElement[0].clearValue();
         await this.originFieldsElement[0].setValue(originText);
         await this.originFirstSuggestionElement.click();
+
     }
 
     async selectNewDestination(destinationText: string) {
@@ -131,10 +134,12 @@ class KayakHomePage {
         await this.destinationFieldsElement[0].clearValue();
         await this.destinationFieldsElement[0].setValue(destinationText);
         await this.destinationFirstSuggestionElement.click();
+
     }
 
 
     async selectDate(addDays: number, dateField: WebdriverIO.Element) {
+
         await dateField.click();
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + addDays)
@@ -154,9 +159,11 @@ class KayakHomePage {
         }
         const dateElement = await $(`div[aria-label="${formatDate(currentDate)}"]`)
         await dateElement.click()
+
     }
 
     async searchFlights() {
+
         await this.searchButtonElement.click();
         var windows = await browser.getWindowHandles()
         for (var i = 0; i < windows.length; i++) {
@@ -167,9 +174,11 @@ class KayakHomePage {
             }
         }
         await browser.pause(5000)
+
     }
 
     getCurrentFormattedDate(addDays: number): string {
+
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + addDays)
         const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -178,6 +187,7 @@ class KayakHomePage {
         const dayOfMonth = currentDate.getDate().toString();
 
         return `${dayOfWeek} ${month}/${dayOfMonth}`;
+
     }
 
     async deselectCompareOptions() {
@@ -185,6 +195,7 @@ class KayakHomePage {
         if(await this.compareCheckboxElement.getAttribute("value") == "true"){
             await this.compareCheckboxElement.click();
         }
+
     }
 
 }

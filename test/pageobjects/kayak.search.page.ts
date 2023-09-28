@@ -8,7 +8,6 @@ export class KayakSearchPage{
     get returnDateTextElements() { return this.dateTextElements[1]}
     get tripTypeTextElement() { return $$('.NITa-trip-type span.NITa-value')[1] }
 
-
     async getRatesForSortOption(sortOption: string) {
 
         const rateTextElement = await $(`.Hv20 > div[aria-label="${sortOption}"] div.Hv20-value span:first-child`);
@@ -16,6 +15,7 @@ export class KayakSearchPage{
         const rate = parseInt(rateText.replace('$', '').replace(',', '')); 
     
         return rate;
+
     }
 
     async getTimesForSortOption(sortOption: string) {
@@ -33,6 +33,7 @@ export class KayakSearchPage{
         currentTime.setMinutes(minutes);
     
         return currentTime;
+        
     }
 }
 
